@@ -1,6 +1,6 @@
 ## About
 
-Ref-based 2-way data binding react-hook.
+Ref-based 2-way data binding hook. Powered by @vue/reactivity. 😏
 
 ## Installation
 
@@ -19,7 +19,7 @@ npm -i react-use-models
 ## Usage
 
 ```jsx
-import useModels from "./useModels"
+import useModels from "react-use-models"
 
 function App() {
     const { models, register } = useModels({
