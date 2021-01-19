@@ -2,6 +2,14 @@
 
 State-based 2-way data binding hook.
 
+
+
+### Credit
+
+0.1.0 Implementation inspired from [use-models](https://www.npmjs.com/package/use-models).
+
+
+
 ## Installation
 
 install package via [npm](https://www.npmjs.com/package/react-use-models).
