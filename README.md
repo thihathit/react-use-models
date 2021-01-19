@@ -1,6 +1,6 @@
 ## About
 
-Ref-based 2-way data binding hook. Powered by @vue/reactivity. 😏
+State-based 2-way data binding hook.
 
 ## Installation
 
@@ -22,87 +22,121 @@ npm -i react-use-models
 import useModels from "react-use-models"
 
 function App() {
-    const { models, register } = useModels({
-        initialData: {
+    const { models, setModels, updateModel, register } = useModels({
+        defaultState: {
+            name: "My Name",
             gender: "female",
-            colors: ["blue"],
+            colors: "blue",
             contact: "something",
-        },
-        onChange(values) {
-            console.log(values)
+            items: {
+                1: "two",
+            },
         },
     })
 
+    useEffect(() => {
+        setTimeout(() => updateModel("name", "My New Name"), 5000)
+    }, [])
+
     return (
-        <div
-            style={{
-                margin: "0 auto",
-                maxWidth: 1200,
-            }}
-        >
-            <div>
-                <label>Name</label>
-                <br />
-                <input ref={(ref) => register("name", ref)} type="text" />
+        <div>
+            <label>Name</label>
+            <br />
+            <input {...register.input({ name: "name" })} />
 
-                <br />
-                <br />
+            <br />
+            <br />
 
-                <label>Email</label>
-                <br />
-                <input ref={(ref) => register("email", ref)} type="email" />
+            <label>Email</label>
+            <br />
+            <input {...register.input({ name: "email" })} />
 
-                <br />
-                <br />
+            <br />
+            <br />
 
-                <label>Contact</label>
-                <br />
-                <textarea ref={(ref) => register("contact", ref)} />
+            <label>Contact</label>
+            <br />
+            <textarea {...register.input({ name: "contact" })} />
 
-                <br />
-                <br />
+            <br />
+            <br />
 
-                <label>Gender</label>
-                <br />
-                <input
-                    ref={(ref) => register("gender", ref)}
-                    name="gender"
-                    type="radio"
-                    value="male"
-                />
-                <input
-                    ref={(ref) => register("gender", ref)}
-                    name="gender"
-                    type="radio"
-                    value="female"
-                />
+            <label>Gender</label>
+            <br />
+            <input {...register.radio({ name: "gender", value: "male" })} />
+            <input {...register.radio({ name: "gender", value: "female" })} />
 
-                <br />
-                <br />
+            <br />
+            <br />
 
-                <label>Colors</label>
-                <br />
-                <input
-                    ref={(ref) => register("colors", ref)}
-                    name="colors"
-                    type="checkbox"
-                    value="red"
-                />
-                <input
-                    ref={(ref) => register("colors", ref)}
-                    name="colors"
-                    type="checkbox"
-                    value="blue"
-                />
+            <label>Color</label>
+            <br />
+            <input
+                {...register.checkbox({
+                    name: "color",
+                    truevalue: "red",
+                })}
+            />
+            <label>red</label>
+            <br />
+            <input
+                {...register.checkbox({
+                    name: "color",
+                    truevalue: "blue",
+                })}
+            />
+            <label>blue</label>
+            <br />
+            <input
+                {...register.checkbox({
+                    name: "color",
+                    truevalue: "Custom event",
+                    onChange: (e) => alert(e.target.value),
+                })}
+            />
+            <label>Custom event</label>
 
-                <button
-                    onClick={() => {
-                        alert(JSON.stringify(models, null, 2))
-                    }}
-                >
-                    Submit
-                </button>
-            </div>
+            <br />
+            <br />
+
+            <label>Items</label>
+            <br />
+            <input
+                {...register.checkboxes({
+                    name: "items",
+                    key: 0,
+                    value: "one",
+                })}
+            />
+            <label>one</label>
+            <br />
+            <input
+                {...register.checkboxes({
+                    name: "items",
+                    key: 1,
+                    value: "two",
+                })}
+            />
+            <label>two</label>
+
+            <br />
+
+            <button
+                onClick={() => {
+                    alert(JSON.stringify(models, null, 2))
+                }}
+            >
+                Submit
+            </button>
+
+            <br />
+            <br />
+            <hr />
+            <br />
+
+            <code>
+                <pre>{JSON.stringify(models, null, 2)}</pre>
+            </code>
         </div>
     )
 }
