@@ -19,6 +19,7 @@ npm -i react-use-models
 ## Usage
 
 ```jsx
+import React, { useEffect } from "react"
 import useModels from "react-use-models"
 
 function App() {
