@@ -120,6 +120,8 @@ export const useModels = (options = {}) => {
             checkbox,
             checkboxes,
         },
+        updateModel,
+        setModels,
     }
 }
 
