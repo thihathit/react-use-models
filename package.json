@@ -1,29 +1,32 @@
 {
-  "name": "react-use-models",
-  "version": "0.0.2",
-  "description": "Ref-based 2-way data binding hook.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thihathit/react-use-models.git"
-  },
-  "keywords": [
-    "react",
-    "react-hooks",
-    "hooks",
-    "models",
-    "v-models"
-  ],
-  "author": "Thiha Thit",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/thihathit/react-use-models/issues"
-  },
-  "homepage": "https://github.com/thihathit/react-use-models#readme",
-  "dependencies": {
-    "@vue/reactivity": "^3.0.5"
-  }
+    "name": "react-use-models",
+    "version": "0.0.2",
+    "description": "Ref-based 2-way data binding hook.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thihathit/react-use-models.git"
+    },
+    "keywords": [
+        "react",
+        "react-hooks",
+        "hooks",
+        "models",
+        "v-models"
+    ],
+    "author": "Thiha Thit",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/thihathit/react-use-models/issues"
+    },
+    "homepage": "https://github.com/thihathit/react-use-models#readme",
+    "dependencies": {
+        "@vue/reactivity": "^3.0.5"
+    },
+    "peerDependencies": {
+        "react": "^17.0.1"
+    }
 }
