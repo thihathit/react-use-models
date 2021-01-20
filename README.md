@@ -37,9 +37,6 @@ function App() {
             gender: "female",
             colors: "blue",
             contact: "something",
-            items: {
-                1: "two",
-            },
         },
     })
 
@@ -111,19 +108,15 @@ function App() {
             <label>Items</label>
             <br />
             <input
-                {...register.checkboxes({
-                    name: "items",
-                    key: 0,
-                    value: "one",
+                {...register.checkbox({
+                    name: "items.one",
                 })}
             />
             <label>one</label>
             <br />
             <input
-                {...register.checkboxes({
-                    name: "items",
-                    key: 1,
-                    value: "two",
+                {...register.checkbox({
+                    name: "items.two",
                 })}
             />
             <label>two</label>
