@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+import get from "lodash.get"
+import set from "lodash.set"
+
 const has = (o, k) => o[k] !== undefined
 
 export const useModels = (options = {}) => {
@@ -7,17 +10,16 @@ export const useModels = (options = {}) => {
 
     const [models, setModels] = useState(() => defaultState)
 
-    const getModel = (name) => models[name]
+    const getModel = (name) => get(models, name)
 
     const updateModel = (name, value) => {
-        setModels((old) => ({
-            ...old,
-            [name]: value,
-        }))
+        setModels((old) => Object.assign({}, set(old, name, value)))
     }
 
     const input = ({ name, type = "text", onChange }) => {
         const handler = onChange || (() => undefined)
+
+        const savedValue = getModel(name) || ""
 
         return {
             onChange: (e) => {
@@ -37,7 +39,7 @@ export const useModels = (options = {}) => {
 
                 handler(e)
             },
-            value: getModel(name),
+            value: savedValue,
             name,
             type,
         }

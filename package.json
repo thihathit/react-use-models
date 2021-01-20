@@ -25,5 +25,9 @@
     "homepage": "https://github.com/thihathit/react-use-models#readme",
     "peerDependencies": {
         "react": "^17.0.1"
+    },
+    "dependencies": {
+        "lodash.get": "^4.4.2",
+        "lodash.set": "^4.3.2"
     }
 }
