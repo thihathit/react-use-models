@@ -86,41 +86,12 @@ export const useModels = (options = {}) => {
         }
     }
 
-    const checkboxes = ({ name, key = 0, value, onChange }) => {
-        const handler = onChange || (() => undefined)
-
-        const savedValue = getModel(name) || {}
-
-        return {
-            onChange: (e) => {
-                const data = e.target.checked ? value : null
-
-                const newValue = { ...savedValue }
-
-                if (data) {
-                    newValue[key] = data
-                } else {
-                    delete newValue[key]
-                }
-
-                updateModel(name, newValue)
-
-                handler(e)
-            },
-            checked: savedValue.hasOwnProperty(key),
-            type: "checkbox",
-            name,
-            value,
-        }
-    }
-
     return {
         models,
         register: {
             input,
             radio,
             checkbox,
-            checkboxes,
         },
         updateModel,
         setModels,
