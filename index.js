@@ -5,10 +5,8 @@ import set from "lodash.set"
 
 const has = (o, k) => o[k] !== undefined
 
-export const useModels = (options = {}) => {
-    const { defaultState = {} } = options
-
-    const [models, setModels] = useState(() => defaultState)
+export const useModels = ({ defaultState = {} }) => {
+    const [models, setModels] = useState(() => Object.assign({}, defaultState))
 
     const getModel = (name) => get(models, name)
 
