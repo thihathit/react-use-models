@@ -1,6 +1,6 @@
 {
     "name": "react-use-models",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "Ref-based 2-way data binding hook.",
     "main": "index.js",
     "types": "index.d.ts",
