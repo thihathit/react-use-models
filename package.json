@@ -3,6 +3,11 @@
     "version": "0.2.1",
     "description": "Ref-based 2-way data binding hook.",
     "main": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "index.js",
+        "index.d.ts"
+    ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
