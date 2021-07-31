@@ -37,19 +37,19 @@ export type TypeUseModelsCheckboxProps = Readonly<
     }
 >
 
-export type TypeUseModelsConfig<InitialState> = {
-    initialState?: InitialState
+export type TypeUseModelsConfig<DefaultState> = {
+    defaultState?: DefaultState
 }
 
-export interface TypeUseModels<InitialState> {
-    models: InitialState
+export interface TypeUseModels<DefaultState> {
+    models: DefaultState
     register: {
         input: (options: TypeUseModelsInput) => TypeUseModelsInputProps
         radio: (options: TypeUseModelsRadio) => TypeUseModelsRadioProps
         checkbox: (options: TypeUseModelsCheckbox) => TypeUseModelsCheckboxProps
     }
-    updateModel: (name: keyof InitialState, value: any) => void
-    setModels: Dispatch<SetStateAction<Partial<InitialState>>>
+    updateModel: (name: keyof DefaultState, value: any) => void
+    setModels: Dispatch<SetStateAction<Partial<DefaultState>>>
 }
 
 export const useModels: <T>(
