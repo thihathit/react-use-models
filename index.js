@@ -14,75 +14,61 @@ export const useModels = ({ defaultState = {} }) => {
         setModels((old) => Object.assign({}, set(old, name, value)))
     }
 
-    const input = ({ name, type = "text", onChange }) => {
-        const handler = onChange || (() => undefined)
+    const input = ({ name, type = "text", onChange = () => {} }) => ({
+        onChange: (e) => {
+            let value = null
 
-        const savedValue = getModel(name) || ""
+            //primitive values
+            if (has(e, "value")) {
+                value = e.value
+            }
 
-        return {
-            onChange: (e) => {
-                let value = null
+            //normal value
+            if (has(e, "target")) {
+                value = e.target.value
+            }
 
-                //primitive values
-                if (has(e, "value")) {
-                    value = e.value
-                }
+            updateModel(name, value)
 
-                //normal value
-                if (has(e, "target")) {
-                    value = e.target.value
-                }
+            onChange(e)
+        },
+        value: getModel(name) || "",
+        name,
+        type,
+    })
 
+    const radio = ({ name, value = null, onChange = () => {} }) => ({
+        onChange: (e) => {
+            if (e.target.checked) {
                 updateModel(name, value)
+            }
 
-                handler(e)
-            },
-            value: savedValue,
-            name,
-            type,
-        }
-    }
-
-    const radio = ({ name, value = null, onChange }) => {
-        const handler = onChange || (() => undefined)
-
-        return {
-            onChange: (e) => {
-                if (e.target.checked) {
-                    updateModel(name, value)
-                }
-
-                handler(e)
-            },
-            checked: getModel(name) === value,
-            type: "radio",
-            name,
-            value,
-        }
-    }
+            onChange(e)
+        },
+        checked: getModel(name) === value,
+        type: "radio",
+        name,
+        value,
+    })
 
     const checkbox = ({
         name,
         truevalue = true,
         falsevalue = false,
-        onChange,
-    }) => {
-        const handler = onChange || (() => undefined)
+        onChange = () => {},
+    }) => ({
+        onChange: (e) => {
+            const value = e.target.checked ? truevalue : falsevalue
 
-        return {
-            onChange: (e) => {
-                const value = e.target.checked ? truevalue : falsevalue
+            updateModel(name, value)
 
-                updateModel(name, value)
-
-                handler(e)
-            },
-            checked: getModel(name) === truevalue,
-            type: "checkbox",
-            name,
-            value: truevalue,
-        }
-    }
+            onChange(e)
+        },
+        checked: getModel(name) === truevalue,
+        type: "checkbox",
+        name,
+        value: truevalue,
+    })
 
     return {
         models,

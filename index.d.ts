@@ -1,39 +1,39 @@
-import { Dispatch, SetStateAction, ChangeEvent } from "react"
+import { Dispatch, SetStateAction, ChangeEvent, HTMLProps } from "react"
 
-type TFieldValue = string | boolean | number
+type TFieldValue = HTMLProps<HTMLInputElement>
 
 export type TypeUseModelsInput = {
     name: string
     type?: string
-    onChange?: (e?: ChangeEvent<HTMLInputElement>) => void
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export type TypeUseModelsInputProps = Readonly<
     Required<TypeUseModelsInput> & {
-        value: TFieldValue
+        value: TFieldValue["value"]
     }
 >
 
 export type TypeUseModelsRadio = {
     name: string
     value?: string | null
-    onChange?: (e?: ChangeEvent<HTMLInputElement>) => void
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export type TypeUseModelsRadioProps = Readonly<
     Required<TypeUseModelsRadio> & {
-        value: TFieldValue
+        value: TFieldValue["value"]
     }
 >
 
 export type TypeUseModelsCheckbox = {
     name: string
-    truevalue?: TFieldValue
-    falsevalue?: TFieldValue
-    onChange?: (e?: ChangeEvent<HTMLInputElement>) => void
+    truevalue?: TFieldValue["value"]
+    falsevalue?: TFieldValue["value"]
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export type TypeUseModelsCheckboxProps = Readonly<
     Required<TypeUseModelsCheckbox> & {
-        value: TFieldValue
-        checked: TFieldValue
+        value: TFieldValue["value"]
+        checked: TFieldValue["checked"]
     }
 >
 
