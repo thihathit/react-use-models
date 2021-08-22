@@ -2,54 +2,60 @@ import { Dispatch, SetStateAction, ChangeEvent, HTMLProps } from "react"
 
 type TFieldValue = HTMLProps<HTMLInputElement>
 
-export type TypeUseModelsInput = {
-    name: string
+export type TypeUseModelsInput<FieldValues> = {
+    name: keyof FieldValues
     type?: string
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export type TypeUseModelsInputProps = Readonly<
-    Required<TypeUseModelsInput> & {
+export type TypeUseModelsInputProps<FieldValues> = Readonly<
+    Required<TypeUseModelsInput<FieldValues>> & {
         value: TFieldValue["value"]
     }
 >
 
-export type TypeUseModelsRadio = {
-    name: string
+export type TypeUseModelsRadio<FieldValues> = {
+    name: keyof FieldValues
     value?: string | null
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export type TypeUseModelsRadioProps = Readonly<
-    Required<TypeUseModelsRadio> & {
+export type TypeUseModelsRadioProps<FieldValues> = Readonly<
+    Required<TypeUseModelsRadio<FieldValues>> & {
         value: TFieldValue["value"]
     }
 >
 
-export type TypeUseModelsCheckbox = {
-    name: string
+export type TypeUseModelsCheckbox<FieldValues> = {
+    name: keyof FieldValues
     truevalue?: TFieldValue["value"]
     falsevalue?: TFieldValue["value"]
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export type TypeUseModelsCheckboxProps = Readonly<
-    Required<TypeUseModelsCheckbox> & {
+export type TypeUseModelsCheckboxProps<FieldValues> = Readonly<
+    Required<TypeUseModelsCheckbox<FieldValues>> & {
         value: TFieldValue["value"]
         checked: TFieldValue["checked"]
     }
 >
 
-export type TypeUseModelsConfig<DefaultState> = {
-    defaultState?: DefaultState
+export type TypeUseModelsConfig<FieldValues> = {
+    defaultState?: FieldValues
 }
 
-export interface TypeUseModels<DefaultState> {
-    models: DefaultState
+export interface TypeUseModels<FieldValues> {
+    models: FieldValues
     register: {
-        input: (options: TypeUseModelsInput) => TypeUseModelsInputProps
-        radio: (options: TypeUseModelsRadio) => TypeUseModelsRadioProps
-        checkbox: (options: TypeUseModelsCheckbox) => TypeUseModelsCheckboxProps
+        input: (
+            options: TypeUseModelsInput<FieldValues>
+        ) => TypeUseModelsInputProps<FieldValues>
+        radio: (
+            options: TypeUseModelsRadio<FieldValues>
+        ) => TypeUseModelsRadioProps<FieldValues>
+        checkbox: (
+            options: TypeUseModelsCheckbox<FieldValues>
+        ) => TypeUseModelsCheckboxProps<FieldValues>
     }
-    updateModel: (name: keyof DefaultState, value: any) => void
-    setModels: Dispatch<SetStateAction<Partial<DefaultState>>>
+    updateModel: (name: keyof FieldValues, value: any) => void
+    setModels: Dispatch<SetStateAction<Partial<FieldValues>>>
 }
 
 export const useModels: <T>(
