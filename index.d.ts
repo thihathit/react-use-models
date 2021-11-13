@@ -4,11 +4,21 @@ type TFieldValue = HTMLProps<HTMLInputElement>
 
 export type TypeUseModelsInput<FieldValues> = {
     name: keyof FieldValues
-    type?: string
+    type?: Pick<HTMLInputElement, "type">
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export type TypeUseModelsInputProps<FieldValues> = Readonly<
     Required<TypeUseModelsInput<FieldValues>> & {
+        value: TFieldValue["value"]
+    }
+>
+
+export type TypeUseModelsTextarea<FieldValues> = {
+    name: keyof FieldValues
+    onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
+}
+export type TypeUseModelsTextareaProps<FieldValues> = Readonly<
+    Required<TypeUseModelsTextarea<FieldValues>> & {
         value: TFieldValue["value"]
     }
 >
@@ -47,6 +57,9 @@ export interface TypeUseModels<FieldValues> {
         input: (
             options: TypeUseModelsInput<FieldValues>
         ) => TypeUseModelsInputProps<FieldValues>
+        textarea: (
+            options: TypeUseModelsTextarea<FieldValues>
+        ) => TypeUseModelsTextareaProps<FieldValues>
         radio: (
             options: TypeUseModelsRadio<FieldValues>
         ) => TypeUseModelsRadioProps<FieldValues>

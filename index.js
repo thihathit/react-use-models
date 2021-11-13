@@ -14,6 +14,18 @@ export const useModels = ({ defaultState = {} }) => {
         setModels((old) => Object.assign({}, set(old, name, value)))
     }
 
+    const textarea = ({ name, onChange = () => {} }) => ({
+        onChange: (e) => {
+            const value = e.target.value
+
+            updateModel(name, value)
+
+            onChange(e)
+        },
+        value: getModel(name) || "",
+        name,
+    })
+
     const input = ({ name, type = "text", onChange = () => {} }) => ({
         onChange: (e) => {
             let value = null
@@ -74,6 +86,7 @@ export const useModels = ({ defaultState = {} }) => {
         models,
         register: {
             input,
+            textarea,
             radio,
             checkbox,
         },
