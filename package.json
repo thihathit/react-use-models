@@ -1,6 +1,6 @@
 {
     "name": "react-use-models",
-    "version": "1.0.0-alpha.2",
+    "version": "1.0.0",
     "description": "State-based 2-way data binding hook",
     "main": "index.js",
     "types": "index.d.ts",
