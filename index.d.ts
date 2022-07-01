@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction, ChangeEvent, HTMLProps } from "react"
+import { Dispatch, SetStateAction, ChangeEvent, HTMLProps, HTMLInputTypeAttribute } from "react"
 
 type TFieldValue = HTMLProps<HTMLInputElement>
 
 export type TypeUseModelsInput<FieldValues> = {
     name: keyof FieldValues
-    type?: Pick<HTMLInputElement, "type">
+    type?: HTMLInputTypeAttribute
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export type TypeUseModelsInputProps<FieldValues> = Readonly<
