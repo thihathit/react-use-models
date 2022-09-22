@@ -3,6 +3,11 @@
 State-based 2-way data binding hook.
 
 
+## Type Documentation
+
+https://paka.dev/npm/react-use-models/api
+
+
 
 ### Credit
 
