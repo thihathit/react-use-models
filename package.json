@@ -30,7 +30,7 @@
     },
     "homepage": "https://github.com/thihathit/react-use-models#readme",
     "peerDependencies": {
-        "react": "^17.0.1"
+        "react": ">=17"
     },
     "dependencies": {
         "lodash.get": "^4.4.2",
