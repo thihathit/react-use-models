@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, ChangeEvent, HTMLProps, HTMLInputTypeAttribute } from "react"
+import {
+    Dispatch,
+    SetStateAction,
+    ChangeEvent,
+    HTMLProps,
+    HTMLInputTypeAttribute,
+} from "react"
 
 type TFieldValue = HTMLProps<HTMLInputElement>
 
@@ -67,8 +73,11 @@ export interface TypeUseModels<FieldValues> {
             options: TypeUseModelsCheckbox<FieldValues>
         ) => TypeUseModelsCheckboxProps<FieldValues>
     }
-    updateModel: (name: keyof FieldValues, value: any) => void
-    setModels: Dispatch<SetStateAction<Partial<FieldValues>>>
+    updateModel: <T extends keyof FieldValues>(
+        name: T,
+        value: FieldValues[T]
+    ) => void
+    setModels: Dispatch<SetStateAction<FieldValues>>
 }
 
 export const useModels: <T>(
