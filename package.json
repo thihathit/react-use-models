@@ -1,10 +1,14 @@
 {
     "name": "react-use-models",
     "version": "1.2.0",
-    "type": "module",
     "description": "State-based 2-way data binding hook",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "type": "module",
+    "types": "./index.d.ts",
+    "main": "./index.js",
+    "exports": {
+        "types": "./index.d.ts",
+        "import": "./index.js"
+    },
     "files": [
         "index.js",
         "index.d.ts"
